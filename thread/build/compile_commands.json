@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/yyj/workspace/cpp_concurrent/thread/build",
-  "command": "/usr/bin/g++    -g   -std=gnu++2a -o CMakeFiles/my_program.dir/thread7.cpp.o -c /home/yyj/workspace/cpp_concurrent/thread/thread7.cpp",
-  "file": "/home/yyj/workspace/cpp_concurrent/thread/thread7.cpp"
-}
-]
