@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/my_program.dir/thread7.cpp.o  -o my_program  -lpthread 
