@@ -3,15 +3,16 @@
 
 int main()
 {
+    // ERROR
     // std::thread t;
     // try {
     //     t.join();
     // }
-    // catch (std::exception& e) {
-    //     std::cout << "예외: " << e.what() << std::endl;
+    // catch (const std::exception &e) {
+    //     std::cout << "error: " << e.what() << "\n";
     // }
-    
-    std::thread t;
+
+    std::thread t; 
     if (t.joinable()) {
         t.join();
     }

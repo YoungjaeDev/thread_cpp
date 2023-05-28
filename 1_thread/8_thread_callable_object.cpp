@@ -22,7 +22,9 @@ int main()
     Work w;
 
     std::thread t1(&foo, 1, 3.4);
-    std::thread t2(&Machine::Run, m, 1, 3.4);
+    // 멤버함수는 일반적으로 객체가 있어야 부를 수 있다
+    std::thread t2(&Machine::Run, &m, 1, 3.4);
+    // ()가 재정의되어 있어, 함수처럼 부를 수 있다
     std::thread t3(w, 1, 3.4);
     std::thread t4([] { std::cout << "Lambda" << std::endl; });
 
@@ -31,6 +33,5 @@ int main()
     t3.join();
     t4.join();
     
-
     return 0;
 }

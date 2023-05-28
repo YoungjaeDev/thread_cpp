@@ -11,6 +11,7 @@ int main()
     int n = 0;
     std::string s = "hello";
 
+    // std:thread의 생성자는 "가변인자 템플릿"으로 되어 있으므로 인자의 경우 생성자에 전달
     std::thread t1(&f1);
     std::thread t2(&f2, 10, 3.4);
     // 참조를 주는 것은 좋은 표현이 아니다
