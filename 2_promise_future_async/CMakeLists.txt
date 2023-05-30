@@ -7,10 +7,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Add your source files here
-set(SOURCES package_task.cpp)
+set(SOURCES 10_async_return.cpp)
+
+# set(SOURCES image_slice_aysnc.cpp slice.cpp)
 
 # Add an executable target for your program
 add_executable(my_program ${SOURCES})
+
 
 # Link against the threading library
 find_package(Threads REQUIRED)

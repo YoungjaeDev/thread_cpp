@@ -13,7 +13,8 @@ int main()
     // 실행중인 현재 스레드 ID 반환
     std::cout << std::this_thread::get_id() << std::endl;
     
-    /* std::thread::id
+    /* 
+    std::thread::id
     - 스레드 ID를 나타내는 가벼운 구조체
     - cout으로 출력 가능하고, 비교 연산 가능
     - 정수로 변환이 안됨. std::hash<std::thread::id> 함수객체가 제공되므로, unordered 컨테이너에 키 값으로 사용 가능

@@ -8,18 +8,20 @@ using namespace std::literals;
 void divide(std::promise<int>&& p, int a, int b)
 {
     try {
-        if ( b == 0 ) throw std::runtime_error("divide by zero");
-        p.set_value( a / b); // c++ 표준에서는 catch로 안넘겨줌
+        if ( b == 0 ) 
+            throw std::runtime_error("divide by zero");
+        p.set_value( a / b); // 0으로 나눈다고 해서 c++ 표준에서는 catch로 안넘겨줌
         // 따라서 이 예제에서는 직접 runtime_error로 넘겨줌
     }
     catch(...)
     {
         std::cout << "Occur exception" << std::endl;
-        p.set_exception(std::current_exception());
+        // 즉시 exception 발생
+        // p.set_exception(std::current_exception());
+        // 스레드가 종료되었을 때 발생
         p.set_exception_at_thread_exit(std::current_exception());
     }
 }
-
 
 int main()
 {

@@ -62,6 +62,7 @@ int main()
     measure_execution_time("f2", f2);
     
     /*
+    g++은 약 10배, vc는 약 3배 정도의 성능 향상을 볼 수 있다
     f1 : 2500008593186, 5.82259 seconds
     f2 : 2500008593186, 0.445459 seconds
     */

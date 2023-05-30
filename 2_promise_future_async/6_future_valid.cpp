@@ -20,9 +20,10 @@ int main()
 
     std::thread t(add, std::move(pm), 10, 20);
 
-    // get 또한 한 번만 호출 가능함. 단, shr_ft는 계속 가능
+    // "get" 또한 한 번만 호출 가능함. 단, shr_ft는 계속 가능
     std::cout << ft.valid() << "\n";
     auto ret = ft.get();
+    // 꺼낸 뒤에는 유효하지 않다고 나옴
     std::cout << ft.valid() << "\n";
 
     t.join();

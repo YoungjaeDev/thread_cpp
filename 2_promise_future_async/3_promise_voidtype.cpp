@@ -12,14 +12,17 @@ int main()
 
     // 작업이 끝났다는 것을 알리는 용도이기 때문에 void로 선언가능
     std::promise<void> pm;
+    // 이것은 값을 반환 받아야 하기 때문에
     std::promise<int> pm2;
     std::future<void> f = pm.get_future();
     std::future<int> f2 = pm2.get_future();
 
-    // 부분 합
+    
     std::thread t([&]{
+        // 부분 합
         std::partial_sum(v1.begin(), v1.end(), v2.begin());
 
+        // void 형태의 promise기 때문에 아래 동작이 가능
         pm.set_value();
 
         int s = std::accumulate(v2.begin(), v2.end(), 0);

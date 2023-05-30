@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Add your source files here
-set(SOURCES 11_thread_joinable.cpp)
+set(SOURCES 13_thread_yield_test.cpp)
 
 # Add an executable target for your program
 add_executable(my_program ${SOURCES})

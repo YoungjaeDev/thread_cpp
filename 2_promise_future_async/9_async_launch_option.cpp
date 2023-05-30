@@ -14,9 +14,10 @@ int add(int a, int b)
 
 int main()
 {
+    // std::launch::async -> 즉시 스레드가 실행됨
     // std::future<int> ft = std::async(std::launch::async, add, 10, 20);
 
-    // get을 부를 때 호출됨
+    // std::launch::deferred -> 지연된 실행, 즉 get을 부를 때 호출됨
     // std::future<int> ft = std::async(std::launch::deferred, add, 10, 20);
     
     // 기본 옵션, 실행하려는 HW(PC, 임베디드, 모바일)에 따라서 어떻게 동작할지 다르다
@@ -25,6 +26,7 @@ int main()
     
     std::cout << "Continue main: " << std::this_thread::get_id() << std::endl;
 
+    std::this_thread::sleep_for(2s);
     int ret = ft.get();
 
     std::cout << "Result: " << ret << std::endl;

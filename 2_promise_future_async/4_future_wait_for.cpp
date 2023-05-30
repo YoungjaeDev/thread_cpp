@@ -7,6 +7,7 @@ using namespace std::literals;
 
 void add(std::promise<int> &&p, int a, int b)
 {
+    // std::this_thread::sleep_for(3s);
     std::this_thread::sleep_for(1s);
     p.set_value(a+b);
 }
@@ -20,7 +21,7 @@ int main()
 
     // 무한정 대기
     // auto ret = ft.get();
-
+    // wait_until도 가능
     std::future_status ret = ft.wait_for(2s);
 
     // 결과값이 도달했다면
@@ -31,6 +32,8 @@ int main()
     else if(ret == std::future_status::timeout) {
         std::cout << "Time out! " << std::endl;
     }
+    // 연산을 수행할 함수가 아직 시작 안됨
+    // "async" 함수에서 사용
     else if(ret == std::future_status::deferred) {
         ;
     }
