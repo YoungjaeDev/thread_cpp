@@ -1,7 +1,7 @@
 #include <iostream>
+#include <string_view>
 #include <thread>
 #include <chrono>
-#include <string_view>
 
 using namespace std::literals;
 
@@ -12,21 +12,22 @@ void delay()
 
 void foo(std::string_view name)
 {
-    // 만일 static 변수라면
-    // data 메모리에 놓인다
-    // 모든 스레드가 공유한다
-    // static 변수는 스레드에 안전하지 않다
-    static int x = 0;
+    /*
+    지역변수
+    - 스택에 놓인다
+    - 스택은 스레드당 한개씩 따로 만들어진다
+    - 지역변수는 "스레드에 안전"하다
+    */
+    int x = 0;
 
     for (int i = 0; i < 10; i++)
     {
         x = 100;
         delay();
-        x = x + 1;
+        x += 1;
         delay();
 
         std::cout << name << " : " << x << std::endl;
-
         delay();
     }
 }
@@ -34,10 +35,16 @@ void foo(std::string_view name)
 int main()
 {
     std::thread t1(foo, "A");
-    std::thread t2(foo, "\tB");
+    std::thread t2(foo, "B");
 
-    t1.join();
-    t2.join();
-
+    if (t1.joinable())
+    {
+        t1.join();
+    }
+    if (t2.joinable())
+    {
+        t2.join();
+    }
+    
     return 0;
 }

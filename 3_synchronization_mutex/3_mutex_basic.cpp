@@ -1,7 +1,7 @@
 #include <iostream>
+#include <string_view>
 #include <thread>
 #include <chrono>
-#include <string_view>
 #include <mutex>
 
 using namespace std::literals;
@@ -10,38 +10,46 @@ std::mutex m;
 
 void delay()
 {
-    std::this_thread::sleep_for(20ms);
+    std::this_thread::sleep_for(5ms);
 }
 
 void foo(std::string_view name)
 {
-    // 만일 static 변수라면
-    // data 메모리에 놓인다
-    // 모든 스레드가 공유한다
-    // static 변수는 스레드에 안전하지 않다
+    /* static variable
+    data 메모리에 놓이고, 모든 스레드가 공유
+    */
     static int x = 0;
 
     for (int i = 0; i < 10; i++)
     {
         m.lock();
+        // ============
         x = 100;
         delay();
-        x = x + 1;
+        x += 1;
         delay();
 
         std::cout << name << " : " << x << std::endl;
-        delay();
+        // ============
         m.unlock();
+
+        delay();
     }
 }
 
 int main()
 {
     std::thread t1(foo, "A");
-    std::thread t2(foo, "\tB");
+    std::thread t2(foo, "B");
 
-    t1.join();
-    t2.join();
-
+    if (t1.joinable())
+    {
+        t1.join();
+    }
+    if (t2.joinable())
+    {
+        t2.join();
+    }
+    
     return 0;
 }
